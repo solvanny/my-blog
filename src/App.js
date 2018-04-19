@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Article from './components/Article';
+import ArticleList from './components/ArticleList';
 import { articles } from './components/fixtures';
 
 
@@ -8,7 +8,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        < Article article = {articles[0]} />
+        < ArticleList articles = {articles} />
       </div>
     );
   }
