@@ -22,11 +22,14 @@ export default class Comments extends Component {
       return null;
     }
     arr.push(
-      <button onClick={this.toggleOpen} >
-        {isOpen
-          ? 'Close'
-          : 'Open'}
-      </button>
+      <div key={'10'}>
+        <br />
+          <button onClick={this.toggleOpen} >
+            {isOpen
+              ? 'Hiden comments'
+              : 'Show comments'}
+          </button>
+      </div>
     );
 
     if (!isOpen) 
@@ -35,6 +38,7 @@ export default class Comments extends Component {
     for (let comment in this.props.comments) {
       arr.push(
         <div key={this.props.comments[comment].id}>
+        <br />
           <ul>
             <li>
               <b>{this.props.comments[comment].user}</b>
