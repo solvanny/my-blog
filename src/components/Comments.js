@@ -1,22 +1,10 @@
 import React, {Component} from 'react';
+import toggleOpen from '../decorations/toggleOpen';
 
-export default class Comments extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isOpen: false
-    };
-  };
-
-  toggleOpen = () => {
-    this.setState({
-      isOpen: !this.state.isOpen
-    })
-  };
+class Comments extends Component {
 
   getComments() {
-    const {isOpen} = this.state;
+    const {isOpen} = this.props;
     let arr = [];
     if (!this.props.comments) {
       return null;
@@ -24,7 +12,7 @@ export default class Comments extends Component {
     arr.push(
       <div>
         <br />
-          <button onClick={this.toggleOpen} >
+          <button onClick={this.props.toggleOpen} >
             {isOpen
               ? 'Hidden comments'
               : 'Show comments'}
@@ -63,3 +51,5 @@ export default class Comments extends Component {
     )
   }
 }
+
+export default toggleOpen(Comments);
