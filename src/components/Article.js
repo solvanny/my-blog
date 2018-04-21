@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {articles} from './fixtures';
 import Comments from './Comments';
 import PropTypes from 'prop-types';
+import toggleOpen from '../decorations/toggleOpen';
 
 class Article extends Component {
   static propTypes = {
@@ -13,24 +13,11 @@ class Article extends Component {
       .isRequired
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isOpen: false
-    };
-  };
-
-  toggleOpen = () => {
-    this.setState({
-      isOpen: !this.state.isOpen
-    })
-  };
-
   getBody() {
-    if (!this.state.isOpen) 
-      return null;
-    const {article} = this.props;
+    const {article, isOpen} = this.props;
+
+    if (!isOpen) return null;
+    
     return (
       <section>
         <div>{article.text}</div>
@@ -40,13 +27,11 @@ class Article extends Component {
   };
 
   render() {
-    const {article} = this.props;
-    const {isOpen} = this.state;
-
+    const {article, isOpen, toggleOpen} = this.props;
     return (
       <div>
         <h1>{article.title}</h1>
-        <button onClick={this.toggleOpen}>
+        <button onClick={toggleOpen}>
           {isOpen
             ? 'Close'
             : 'Open'}
@@ -58,4 +43,4 @@ class Article extends Component {
   }
 }
 
-export default Article;
+export default toggleOpen(Article);

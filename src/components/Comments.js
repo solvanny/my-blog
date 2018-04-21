@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
 
 export default class Comments extends Component {
   constructor(props) {
@@ -22,11 +22,11 @@ export default class Comments extends Component {
       return null;
     }
     arr.push(
-      <div key={'10'}>
+      <div>
         <br />
           <button onClick={this.toggleOpen} >
             {isOpen
-              ? 'Hiden comments'
+              ? 'Hidden comments'
               : 'Show comments'}
           </button>
       </div>
@@ -38,7 +38,7 @@ export default class Comments extends Component {
     for (let comment in this.props.comments) {
       arr.push(
         <div key={this.props.comments[comment].id}>
-        <br />
+        <br/>
           <ul>
             <li>
               <b>{this.props.comments[comment].user}</b>
@@ -56,8 +56,6 @@ export default class Comments extends Component {
   }
 
   render() {
-    const {isOpen} = this.state;
-
     return (
       <div>
         {this.getComments()}
