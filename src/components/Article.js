@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import Comments from './Comments';
 import PropTypes from 'prop-types';
+import AccordionWrapper from '../decorations/AccordionWrapper';
 
 class Article extends Component {
   static propTypes = {
-    article: PropTypes
+    item: PropTypes
       .shape({
         id: PropTypes.string.isRequired, 
         title: PropTypes.string.isRequired, 
@@ -13,23 +14,24 @@ class Article extends Component {
   };
 
   getBody() {
-    const {article, isOpen} = this.props;
+    const {item, isOpen} = this.props;
 
     if (!isOpen) return null;
     
     return (
       <section>
-        <div>{article.text}</div>
-        <Comments comments={article.comments}/>
+        <div>{item.text}</div>
+        <Comments comments={item.comments}/>
       </section>
     );
   };
 
   render() {
-    const {article, isOpen, toggleOpen} = this.props;
+    const {item, isOpen, toggleOpen} = this.props;
     return (
       <div>
-        <h1>{article.title}</h1>
+        <h1>{item.title}</h1>
+        <h2>{this.props.name}</h2>
         <button onClick={toggleOpen}>
           {isOpen
             ? 'Close'
@@ -42,4 +44,4 @@ class Article extends Component {
   }
 }
 
-export default Article;
+export default AccordionWrapper(Article);

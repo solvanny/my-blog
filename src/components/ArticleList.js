@@ -1,29 +1,19 @@
 import React, {Component} from 'react'
 import Article from './Article';
+import AccordionWrapper from '../decorations/toggleOpen';
 
-export default class ArticleList extends Component {
-  state = {
-    openArticleId: null
-  };
+const List = AccordionWrapper(Article);
 
+class ArticleList extends Component {
+  
   render() {
-    const articleElements = this
-      .props
-      .articles
-      .map(article => <li key={article.id}>
-        <Article article={article}
-        isOpen = {article.id === this.state.openArticleId}
-        toggleOpen = {this.toggleOpenArticle(article.id)}
-        />
-      </li>);
 
     return (
       <ul>
-        {articleElements}
+        <List items={this.props.articles}/>
       </ul>
     )
   }
-  toggleOpenArticle = openArticleId => ev => {
-    this.setState({openArticleId})
-  };
 }
+
+export default ArticleList;
