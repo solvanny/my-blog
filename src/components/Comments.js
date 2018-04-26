@@ -4,24 +4,11 @@ import toggleOpen from '../decorations/toggleOpen';
 class Comments extends Component {
 
   getComments() {
-    const {isOpen} = this.props;
-    let arr = [];
-    if (!this.props.comments) {
+    if(!this.props.isOpen) {
       return null;
     }
-    arr.push(
-      <div>
-        <br />
-          <button onClick={this.props.toggleOpen} >
-            {isOpen
-              ? 'Hidden comments'
-              : 'Show comments'}
-          </button>
-      </div>
-    );
-
-    if (!isOpen) 
-      return arr;
+    
+    let arr = [];
     
     for (let comment in this.props.comments) {
       arr.push(
@@ -40,12 +27,25 @@ class Comments extends Component {
         </div>
       );
     }
+
     return arr;
   }
 
   render() {
+    if (!this.props.comments) {
+
+      return null;
+    }
+
     return (
       <div>
+        <br />
+        <button onClick={this.props.toggleOpen} >
+          {this.props.isOpen
+            ? 'Hidden comments'
+            : 'Show comments'}
+        </button>
+        
         {this.getComments()}
       </div>
     )

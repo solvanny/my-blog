@@ -33,9 +33,7 @@ class Article extends Component {
         <h1>{item.title}</h1>
         <h2>{this.props.name}</h2>
         <button onClick={toggleOpen}>
-          {isOpen
-            ? 'Close'
-            : 'Open'}
+          {isOpen ? 'Close' : 'Open'}
         </button>
         <br/>
         <br/> {this.getBody()}

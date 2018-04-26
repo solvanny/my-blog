@@ -2,11 +2,15 @@ import React, { Component } from 'react';
 
 export default(OriginalComponent) => class AccordionWrapper extends Component {
   state = {
-    openId: false
+    openId: null
   }
 
   toggleOpen = openId => ev => {
-    this.setState({openId});
+    if(openId === this.state.openId) {
+      this.setState({openId: null});
+    } else {
+      this.setState({openId});
+    }
   }
 
   isOpen(id) {
@@ -16,7 +20,7 @@ export default(OriginalComponent) => class AccordionWrapper extends Component {
   renderItems() {
     return this.props.items.map(item => {
       return( 
-        <li> 
+        <li key={item.id}> 
             <OriginalComponent item={item} toggleOpen={this.toggleOpen(item.id)} isOpen={this.isOpen(item.id)} />
         </li>
       );  
